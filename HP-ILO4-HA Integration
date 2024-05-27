@@ -1,0 +1,105 @@
+sensor hp_ilo:
+  platform: hp_ilo
+  host: 192.168.12.190
+  username: USE YOURS
+  password: USE YOURS
+  scan_interval: 120
+
+  monitored_variables:
+  
+    
+      - name: fan_status
+        sensor_type: server_health
+        value_template: "{{ ilo_data.health_at_a_glance['fans']['status'] }}"
+
+      - name: memory_status
+        sensor_type: server_health
+        value_template: "{{ ilo_data.health_at_a_glance['memory']['status'] }}"
+
+      - name: network_status
+        sensor_type: server_health
+        value_template: "{{ ilo_data.health_at_a_glance['network']['status'] }}"
+
+      - name: processor_status
+        sensor_type: server_health
+        value_template: "{{ ilo_data.health_at_a_glance['processor']['status'] }}"
+
+      - name: storage_status
+        sensor_type: server_health
+        value_template: "{{ ilo_data.health_at_a_glance['storage']['status'] }}"
+
+      - name: temperature_status
+        sensor_type: server_health
+        value_template: "{{ ilo_data.health_at_a_glance['temperature']['status'] }}"
+
+      - name: memory_cpu1_size
+        sensor_type: server_health
+        value_template: "{{ ilo_data.memory['memory_details_summary']['cpu_1']['total_memory_size'] }}"
+
+      - name: nic_ilo_status
+        sensor_type: server_health
+        value_template: "{{ ilo_data.nic_information['iLO iLO Dedicated Network Port']['status'] }}"
+
+      - name: Watts
+        sensor_type: server_health
+        value_template: "{{ ilo_data.power_supply_summary['present_power_reading'] }}"
+        
+      - name: Inlet Temp
+        sensor_type: server_health
+        unit_of_measurement: '°F'
+        value_template: '{{ (ilo_data.temperature["01-Front Ambient"].currentreading[0]*9/5) + 32 }}'
+      
+      - name: Fan1
+        sensor_type: server_health
+        unit_of_measurement: '%'
+        value_template: '{{ ilo_data.fans["Fan 1"].speed[0] }}'
+        
+      - name: Fan2
+        sensor_type: server_health
+        unit_of_measurement: '%'
+        value_template: '{{ ilo_data.fans["Fan 2"].speed[0] }}'
+        
+      - name: Fan3
+        sensor_type: server_health
+        unit_of_measurement: '%'
+        value_template: '{{ ilo_data.fans["Fan 3"].speed[0] }}'
+        
+      - name: Fan4
+        sensor_type: server_health
+        unit_of_measurement: '%'
+        value_template: '{{ ilo_data.fans["Fan 4"].speed[0] }}'
+        
+      - name: Fan5
+        sensor_type: server_health
+        unit_of_measurement: '%'
+        value_template: '{{ ilo_data.fans["Fan 5"].speed[0] }}'
+        
+      - name: Fan6
+        sensor_type: server_health
+        unit_of_measurement: '%'
+        value_template: '{{ ilo_data.fans["Fan 6"].speed[0] }}'
+        
+      - name: cpu1temp
+        sensor_type: server_health
+        unit_of_measurement: '°F'
+        value_template: '{{ (ilo_data.temperature["02-CPU 1"].currentreading[0]*9/5) + 32 }}'
+        
+      - name: cpu2temp
+        sensor_type: server_health
+        unit_of_measurement: '°F'
+        value_template: '{{ (ilo_data.temperature["03-CPU 2"].currentreading[0]*9/5) + 32 }}'
+        
+      - name: HDController
+        sensor_type: server_health
+        unit_of_measurement: '°F'
+        value_template: '{{ (ilo_data.temperature["25-HD Controller"].currentreading[0]*9/5) + 32 }}'
+        
+      - name: ExhastTemp
+        sensor_type: server_health
+        unit_of_measurement: '°F'
+        value_template: '{{ (ilo_data.temperature["50-Sys Exhaust"].currentreading[0]*9/5) + 32 }}'
+        
+      - name: Chipset
+        sensor_type: server_health
+        unit_of_measurement: '°F'
+        value_template: '{{ (ilo_data.temperature["13-Chipset"].currentreading[0]*9/5) + 32 }}'
